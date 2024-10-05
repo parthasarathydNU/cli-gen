@@ -19,7 +19,7 @@ CLI-Gen is currently in the conceptual and planning phase. We're actively workin
 
 ## Learn More
 
-Visit our [Wiki](link-to-wiki) to dive deeper into:
+Visit our [Wiki](https://github.com/parthasarathydNU/cli-gen/wiki) to dive deeper into:
 
 - The theory behind CLI-Gen's graph-based approach
 - Our roadmap and planned features
@@ -38,4 +38,4 @@ Stay tuned for updates as we move from concept to code!
 
 ## License
 
-CLI-Gen is planned to be released under the [MIT License](link-to-license).
+CLI-Gen is planned to be released under the [MIT License](https://github.com/parthasarathydNU/cli-gen/blob/main/LICENSE).
