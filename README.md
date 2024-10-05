@@ -31,8 +31,8 @@ Visit our [Wiki](https://github.com/parthasarathydNU/cli-gen/wiki) to dive deepe
 We're excited about the potential of CLI-Gen and welcome community involvement:
 
 - [GitHub Issues](https://github.com/parthasarathydNU/cli-gen/issues): Share your ideas and feature requests
-- [Discussions](link-to-discussions): Join the conversation about CLI-Gen's development
-- [Contributing Guide](link-to-contributing): Learn how you can contribute to the project
+- [Discussions](https://github.com/parthasarathydNU/cli-gen/discussions): Join the conversation about CLI-Gen's development
+- [Contributing Guide](https://github.com/parthasarathydNU/cli-gen/blob/main/Contributing.md): Learn how you can contribute to the project
 
 Stay tuned for updates as we move from concept to code!
 
