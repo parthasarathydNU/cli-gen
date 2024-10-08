@@ -47,7 +47,15 @@ async function main() {
             console.log(`Total JavaScript files processed: ${astEntries.length}`);
 
             if(outputFilePath){
-                await writeToFile(outputFilePath, JSON.stringify(astEntries));
+
+                let pathToWriteTo = outputFilePath;
+
+                if(!pathToWriteTo.endsWith('.json')){
+                    pathToWriteTo += '.json'
+                }
+                                
+                response = await writeToFile(pathToWriteTo, astEntries);
+                console.log(response);
             }
 
 

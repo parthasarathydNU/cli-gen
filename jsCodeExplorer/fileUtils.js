@@ -50,8 +50,8 @@ async function readFile(filePath) {
 async function writeToFile(filePath, content){
 
 	try{
-		return fs.writeFile(filePath, content).then(() => {
-			return `Asts written to ${filePath} successfully`;
+		return fs.writeFile(filePath, JSON.stringify(content)).then(() => {
+			return `\nASTs written to ${filePath} successfully\n`;
 		});
 	} catch (error) {
 		throw new Error(`Error writing asts to file ${filePath}`);
