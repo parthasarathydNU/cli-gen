@@ -53,6 +53,8 @@ The tool will provide the following output:
 - Total number of JavaScript files processed
 - Error messages if any issues occur during processing
 
+To understand the output generated refer to [Understanding the Output](./UnderstandingAstOutput.md)
+
 ## Dependencies
 
 - @babel/parser: For generating ASTs from JavaScript code
