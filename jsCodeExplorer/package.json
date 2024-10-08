@@ -4,6 +4,7 @@
   "description": "This package can be used to generate ASTs for an entire codebase of javascript files",
   "main": "main.js",
   "scripts": {
+    "generate-ast": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
