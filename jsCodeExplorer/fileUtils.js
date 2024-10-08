@@ -47,4 +47,16 @@ async function readFile(filePath) {
 	}
 }
 
-module.exports = {readFile, walkDir}
+async function writeToFile(filePath, content){
+
+	try{
+		return fs.writeFile(filePath, content).then(() => {
+			return `Asts written to ${filePath} successfully`;
+		});
+	} catch (error) {
+		throw new Error(`Error writing asts to file ${filePath}`);
+	}
+
+}
+
+module.exports = {readFile, walkDir, writeToFile}

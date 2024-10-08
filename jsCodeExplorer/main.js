@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { walkDir, readFile } = require('./fileUtils');
+const { walkDir, readFile, writeToFile } = require('./fileUtils');
 const { generateAst } = require('./parsingUtils');
 
 async function generateAstsForDirectory(directoryPath) {
@@ -22,10 +22,11 @@ async function generateAstsForDirectory(directoryPath) {
 async function main() {
     // Get the directory path from command line arguments
     const directoryPath = process.argv[2];
+    const outputFilePath = process.argv[3];
 
     if (!directoryPath) {
         console.error('Error: Please provide a directory path.');
-        console.log('Usage: node main.js <directory_path>');
+        console.log('Usage: node main.js <directory_path> [<output_file_path>]');
         process.exit(1);
     }
 
@@ -44,6 +45,12 @@ async function main() {
                 console.log('\n' + '='.repeat(50) + '\n');
             });
             console.log(`Total JavaScript files processed: ${astEntries.length}`);
+
+            if(outputFilePath){
+                await writeToFile(outputFilePath, JSON.stringify(astEntries));
+            }
+
+
         }
     } catch (error) {
         console.error('An error occurred:', error);
