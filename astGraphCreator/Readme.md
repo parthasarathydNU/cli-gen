@@ -14,8 +14,13 @@ This project is an Abstract Syntax Tree (AST) parser and knowledge graph generat
 
 ## Sample Visuzalization
 
+### Sample AST Nodes and Relations
+![Sample AST Nodes and Relations](./SampeASTNodesandRelns.png)
+
+### 2D Representation of Knowledge Graph
 ![2D Representation of Knowledge Graph](./viz/2dGraph.png)
 
+### Interactive Graph
 ![Interactive Graph](./viz/3dGraph.png)
 
 ## How It Works
