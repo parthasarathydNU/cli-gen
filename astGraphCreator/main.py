@@ -6,7 +6,8 @@ from entities.CodeGraph import CodeGraph
 from astParser import parse_ast
 from astParser import validate_relationships
 
-from viz.visualize import visualize_graph
+from viz.visualize_2d import visualize_graph_2d
+from viz.visualize_3d import visualize_graph_3d
 
 def main():
 
@@ -23,7 +24,7 @@ def main():
     code_graph = CodeGraph()
 
     for file_path, ast_json in ast_dict.items():
-        graph = parse_ast(ast_json)
+        graph = parse_ast(ast_json, file_path)
         code_graph.nodes.update(graph.nodes)
         for rel in graph.relationships:
             if rel not in code_graph.relationships:
@@ -44,7 +45,8 @@ def main():
     # Use this after generating the graph
     validate_relationships(code_graph)   
 
-    visualize_graph(code_graph)
+    visualize_graph_2d(code_graph)
+    visualize_graph_3d(code_graph)
 
 
 

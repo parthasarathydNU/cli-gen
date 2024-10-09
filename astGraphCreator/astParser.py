@@ -1,8 +1,10 @@
 from entities.CodeGraph import CodeGraph
 from entities.CodeNode import CodeNode
 
-def parse_ast(ast_json):
+def parse_ast(ast_json, file_path):
     graph = CodeGraph()
+
+    file_location = [file_path]
     
     def traverse(node, parent_id=None):
         if not isinstance(node, dict) or 'type' not in node:
@@ -10,7 +12,7 @@ def parse_ast(ast_json):
 
         name = get_node_name(node)
         location = f"{node.get('loc', {}).get('start', {}).get('line', 0)}:{node.get('loc', {}).get('start', {}).get('column', 0)}"
-        code_node = CodeNode(node['type'], name, location)
+        code_node = CodeNode(node['type'], name, location, file_location[0])
         code_node = graph.add_node(code_node)  # This will either add the node or return an existing one
         current_id = code_node.id
         

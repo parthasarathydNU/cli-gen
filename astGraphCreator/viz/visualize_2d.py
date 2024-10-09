@@ -3,12 +3,12 @@ import plotly.graph_objects as go
 
 from entities.CodeGraph import CodeGraph
 
-def visualize_graph(code_graph: CodeGraph):
+def visualize_graph_2d(code_graph: CodeGraph):
     G = nx.DiGraph()
     
     # Add nodes
     for node_id, node in code_graph.nodes.items():
-        G.add_node(node_id, label=node.name, type=node.type, location=node.location)
+        G.add_node(node_id, label=node.name, type=node.type, location=node.location, file_path=node.file_path)
     
     # Add edges
     for from_node, to_node, rel_type in code_graph.relationships:
@@ -64,7 +64,7 @@ def visualize_graph(code_graph: CodeGraph):
     for node, adjacencies in G.adjacency():
         node_adjacencies.append(len(adjacencies))
         node_info = G.nodes[node]
-        node_text.append(f"Name: {node_info['label']}<br>Type: {node_info['type']}<br>Location: {node_info['location']}")
+        node_text.append(f"Name: {node_info['label']}<br>Type: {node_info['type']}<br>File: {node_info['file_path']}<br>Location: {node_info['location']}")
     
     node_trace.marker.color = node_adjacencies
     node_trace.text = node_text
