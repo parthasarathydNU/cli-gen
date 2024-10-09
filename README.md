@@ -17,6 +17,10 @@ CLI-Gen explores how a graph data structure can act as a central element for und
 
 CLI-Gen is currently in the conceptual and planning phase. We're actively working on the core architecture and will be implementing features in the near future.
 
+Here are some of the features that I have completed implementing:
+- **[AST Generator CLI](https://github.com/parthasarathydNU/cli-gen/tree/main/jsCodeExplorer)**: AST Generator is a command-line tool that generates Abstract Syntax Trees (ASTs) for JavaScript files in a specified directory. It processes all JavaScript files recursively in the given directory and provides a sample output of the generated ASTs.
+- **[Knowledge Graph Generator](https://github.com/parthasarathydNU/cli-gen/tree/main/astGraphCreator)**: This project is an Abstract Syntax Tree (AST) parser and knowledge graph generator for JavaScript code. It takes JavaScript ASTs in JSON format and converts them into a queryable knowledge graph structure.  
+
 ## Learn More
 
 Visit our [Wiki](https://github.com/parthasarathydNU/cli-gen/wiki) to dive deeper into:
