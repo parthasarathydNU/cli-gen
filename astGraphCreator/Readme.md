@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is an Abstract Syntax Tree (AST) parser and knowledge graph generator for JavaScript code. It takes JavaScript ASTs in JSON format and converts them into a queryable knowledge graph structure. This tool is designed to facilitate code analysis, understanding complex codebases, and potentially integrating with AI-based code assistance systems.
+This project is an Abstract Syntax Tree (AST) parser and knowledge graph generator for JavaScript code. It takes JavaScript ASTs in JSON format and converts them into a queryable knowledge graph structure. This tool is designed to facilitate code analysis, understanding complex codebases, and potentially integrating with AI-based code assistance systems. In the current implementation, this provides an interactive representation of a codebase's structure. By visualizing nodes (representing code elements like files, classes, methods, etc.) and their relationships (such as containment or inheritance), developers can gain insights into the organization and complexity of the code.
 
 ## Features
 
@@ -34,13 +34,22 @@ This project is an Abstract Syntax Tree (AST) parser and knowledge graph generat
    - Variable usage
    - Module imports/exports
 
+5. **Visualization Features**:
+   - **Interactive Interface**: Users can drag nodes to explore the graph dynamically.
+   - **Clustering**: Nodes are grouped based on their file paths, helping to visualize module boundaries.
+   - **Node Size and Color**: Nodes are sized and colored to indicate their number of connections and file associations.
+
+6. **Technical Stack**:
+   - **NetworkX**: Used for constructing the graph's data structure.
+   - **Pyvis**: Provides an interactive web-based visualization interface.
+
 ## Key Components
 
 - `CodeNode`: Represents a single node in the graph (e.g., a function, class, or variable).
 - `CodeGraph`: The main graph structure that holds all nodes and relationships.
 - `parse_ast()`: The core function that traverses the AST and builds the graph.
 - `get_node_name()`: Helper function to generate meaningful names for AST nodes.
-- `print_graph()`: Utility function to display the generated graph structure.
+- `visualize_graph_2d() and visualize_graph_3d()`: Utility function to display the generated graph structure.
 
 ## Usage
 
@@ -60,12 +69,28 @@ The tool provides two main types of output:
 1. **Nodes**: Representing individual code elements, including their type, name, and location in the source code.
 2. **Relationships**: Showing how different nodes are connected (e.g., which function calls another function).
 
-## Future Enhancements
+### Use Cases
 
-- Integration with code editors for real-time analysis
-- Advanced query capabilities for extracting specific information from the graph
-- Visualization of the code structure
-- AI-powered code suggestions and refactoring recommendations based on the graph structure
+- **Code Comprehension**: Quickly understand the architecture and dependencies within a codebase.
+- **Refactoring Support**: Identify tightly coupled components that may benefit from refactoring.
+- **Onboarding Tool**: Help new developers familiarize themselves with complex projects.
+
+### Improvements and Future Work
+
+1. **Enhanced Metrics Display**:
+   - Integrate metrics such as node degree, betweenness centrality, and connected components directly within the visualization.
+
+2. **Customization Controls**:
+   - Provide users with controls to adjust physics settings (e.g., force strength) directly in the interface for better layout customization.
+
+3. **Scalability Enhancements**:
+   - Optimize performance for larger codebases by implementing lazy loading or hierarchical views.
+
+4. **Integration with Development Tools**:
+   - Develop plugins for popular IDEs to allow real-time visualization updates as code changes.
+
+5. **Advanced Analysis Features**:
+   - Implement features like impact analysis to predict how changes in one part of the code might affect others.
 
 ## Requirements
 
@@ -79,3 +104,7 @@ Contributions to enhance the functionality, improve efficiency, or extend the ca
 ## License
 
 [MIT License](./LICENSE)
+
+## Conclusion
+
+The current implementation provides a solid foundation for visualizing code structure interactively. By continuing to enhance its features and usability, this tool can become an invaluable asset for developers seeking to understand and improve their codebases efficiently.
