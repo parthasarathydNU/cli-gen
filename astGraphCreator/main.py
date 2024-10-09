@@ -3,11 +3,8 @@ import argparse
 
 from astReader.astReader import read_ast_json
 from entities.CodeGraph import CodeGraph
-from astParser import parse_ast
-from astParser import validate_relationships
+from graphGen.graphUtils import generateGraph
 
-from viz.visualize_2d import visualize_graph_2d
-from viz.visualize_3d import visualize_graph_3d
 
 def main():
 
@@ -20,33 +17,12 @@ def main():
     # Read and parse the AST JSON file
     ast_dict = read_ast_json(sys.argv[1])
 
-    # Process the parsed AST data into a graph structure
-    code_graph = CodeGraph()
+    graph = generateGraph(ast_dict)
 
-    for file_path, ast_json in ast_dict.items():
-        graph = parse_ast(ast_json, file_path)
-        code_graph.nodes.update(graph.nodes)
-        for rel in graph.relationships:
-            if rel not in code_graph.relationships:
-                code_graph.relationships.append(rel)
+    print(graph.get_node_ids())
 
-    def print_graph(code_graph):
-        print("Nodes in the code graph:")
-        for node_id, node in code_graph.nodes.items():
-            print(f"ID: {node_id}, Name: {node.name}, Type: {node.type}, Location: {node.location}")
 
-        print("\nRelationships in the code graph:")
-        for rel in code_graph.relationships:
-            from_id, to_id, relationship_type = rel
-            print(f"From: {from_id}, To: {to_id}, Relationship: {relationship_type}")        
-
-    print_graph(code_graph)
-
-    # Use this after generating the graph
-    validate_relationships(code_graph)   
-
-    visualize_graph_2d(code_graph)
-    visualize_graph_3d(code_graph)
+    
 
 
 

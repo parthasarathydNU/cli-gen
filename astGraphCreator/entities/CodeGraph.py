@@ -10,3 +10,6 @@ class CodeGraph:
 
     def add_relationship(self, from_node_id, to_node_id, relationship_type):
         self.relationships.append((from_node_id, to_node_id, relationship_type))
+
+    def get_node_ids(self):
+        return [node for node in self.nodes]
