@@ -20,7 +20,7 @@ Here are some of the features that I have completed implementing:
 - Intelligent test case generation for API and non-API projects
 - Context-aware client library generation from OpenAPI specs
 - LLM integration for advanced code understanding
-- 
+
 ## Learn More
 
 Visit our [Wiki](https://github.com/parthasarathydNU/cli-gen/wiki) to dive deeper into:
