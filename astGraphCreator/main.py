@@ -8,15 +8,14 @@ from astParser import validate_relationships
 
 def main():
 
-    # astJSON_StringifiedFilePath = 
 
-    # if len(sys.argv) < 2:
-    #     print("Provide the path to the Stringified AST Json file along with the run command")
-    #     print("Example: python main.py .../path/to/file.json")
-    #     return
+    if len(sys.argv) < 2:
+        print("Provide the path to the Stringified AST Json file along with the run command")
+        print("Example: python main.py .../path/to/file.json")
+        return
 
     # Read and parse the AST JSON file
-    ast_dict = read_ast_json("/Users/dhruvparthasarathy/Documents/personal/cli-gen/experiments/sample.json")
+    ast_dict = read_ast_json(sys.argv[1])
 
     # Process the parsed AST data into a graph structure
     code_graph = CodeGraph()
