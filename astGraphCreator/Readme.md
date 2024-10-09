@@ -12,6 +12,12 @@ This project is an Abstract Syntax Tree (AST) parser and knowledge graph generat
 - Handles multiple files, creating a comprehensive graph of the entire codebase
 - Provides a foundation for advanced code analysis and AI-assisted development
 
+## Sample Visuzalization
+
+![2D Representation of Knowledge Graph](./viz/2dGraph.png)
+
+![Interactive Graph](./viz/3dGraph.png)
+
 ## How It Works
 
 1. **AST Parsing**: The tool reads ASTs in JSON format, typically generated from JavaScript code using tools like Babel.
