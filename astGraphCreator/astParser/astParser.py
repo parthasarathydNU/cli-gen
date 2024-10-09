@@ -13,9 +13,15 @@ def parse_ast(ast_json, file_path):
         name = get_node_name(node)
         location = f"{node.get('loc', {}).get('start', {}).get('line', 0)}:{node.get('loc', {}).get('start', {}).get('column', 0)}"
         code_node = CodeNode(node['type'], name, location, file_location[0])
+
+        
+        add_node_properties(code_node, node)
+        add_code_metrics(code_node, node)
+        # add_semantic_relationships(graph, code_node, node)
+
         code_node = graph.add_node(code_node)  # This will either add the node or return an existing one
         current_id = code_node.id
-        
+
         if parent_id:
             # Only add 'contains' for specific parent-child relationships
             if node['type'] not in ['MemberExpression', 'CallExpression']:
@@ -64,7 +70,8 @@ def get_node_name(node):
     elif node.get('value') is not None and type(node.get('value')) == dict:
         return f"{node['type']}_{node['value'].get('name')}"
     elif node.get('value') is not None:
-         return f"{node['type']}_{node['value']}"
+        #  return f"{node['type']}_{node['value']}"
+        return f"{node['type']}"
     else:
         return f"{node['type']}_{node.get('kind', '')}"
 
@@ -74,3 +81,47 @@ def validate_relationships(graph):
         if (to_id, from_id, rel_type) in relationship_dict:
             print(f"Warning: Circular reference detected between {from_id} and {to_id}")
         relationship_dict[(from_id, to_id, rel_type)] = True
+
+def add_node_properties(node, ast_node):
+    if node.type == 'FunctionDeclaration' or node.type == 'FunctionExpression':
+        node.properties['params'] = [param['name'] if param['type'] == "Identifier" else param['type'] for param in ast_node.get('params', [])]
+        # node.properties['return_type'] = infer_return_type(ast_node['body'])
+        # node.properties['docstring'] = extract_docstring(ast_node['body'])
+    elif node.type == 'ClassDeclaration' or node.type == 'ClassExpression':
+        node.properties['methods'] = [method['key']['name'] for method in ast_node['body']['body'] if method['type'] == 'MethodDefinition']
+        # node.properties['attributes'] = extract_class_attributes(ast_node['body'])
+    elif node.type == 'CommentBlock':
+       node.properties['docstring'] = ast_node['value']
+    elif node.type == 'VariableDeclaration':
+        pass
+        # node.properties['data_type'] = infer_data_type(ast_node['declarations'][0]['init'])
+        # node.properties['scope'] = determine_scope(ast_node)
+        # node.properties['initial_value'] = extract_initial_value(ast_node['declarations'][0]['init'])
+    # Add more node types as needed
+
+
+# def add_semantic_relationships(graph, node, ast_node):
+#     if node.type == 'CallExpression':
+#         called_function = extract_called_function(ast_node['callee'])
+#         graph.add_relationship(node.id, called_function, 'calls')
+#     elif node.type == 'VariableDeclaration':
+#         used_variables = extract_used_variables(ast_node['declarations'][0]['init'])
+#         for var in used_variables:
+#             graph.add_relationship(node.id, var, 'uses')
+#     elif node.type == 'ImportDeclaration':
+#         imported_module = ast_node['source']['value']
+#         graph.add_relationship(node.id, imported_module, 'imports')
+#     # Add more relationship types as needed
+
+def add_code_metrics(node, ast_node):
+    if node.type in ['FunctionDeclaration', 'FunctionExpression', 'ArrowFunctionExpression']:
+        # node.properties['cyclomatic_complexity'] = calculate_cyclomatic_complexity(ast_node['body'])
+        # node.properties['loc'] = calculate_lines_of_code(ast_node)
+        node.properties['param_count'] = len(ast_node.get('params', []))    
+
+def build_cross_file_references(graph):
+    for node in graph.nodes.values():
+        if node.type == 'ImportDeclaration':
+            imported_module = node.properties['imported_module']
+            if imported_module in graph.nodes:
+                graph.add_relationship(node.id, graph.nodes[imported_module].id, 'imports')
