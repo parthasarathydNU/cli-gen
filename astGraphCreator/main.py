@@ -6,6 +6,8 @@ from entities.CodeGraph import CodeGraph
 from astParser import parse_ast
 from astParser import validate_relationships
 
+from viz.visualize import visualize_graph
+
 def main():
 
 
@@ -40,7 +42,11 @@ def main():
     print_graph(code_graph)
 
     # Use this after generating the graph
-    validate_relationships(code_graph)    
+    validate_relationships(code_graph)   
+
+    visualize_graph(code_graph)
+
+
 
 if __name__ == "__main__":
     main()
